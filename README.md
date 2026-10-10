@@ -2,10 +2,24 @@
 
 Diego Carrillo's Claude Code plugins: mods that change Claude Code's own interface, and design systems packaged as skills.
 
+![Crab Crew: eleven Clawd costumes, each worn by a different crab](docs/clawds/crew.png)
+
 | Plugin | What it does |
 | --- | --- |
 | [crab-crew](plugins/crab-crew) | Mod: a progress bar above the prompt and a `/agents-info` panel where every subagent is its own animated pixel-art Clawd crab, in eleven costumes. An extension of [savvy-progress](https://github.com/JohnnyVizz/claude-kit/tree/main/plugins/savvy-progress) by JohnnyVizz |
 | [crab-crew-design-system](plugins/crab-crew-design-system) | Design system skill: the Crab Crew brand book, tokens, crab kit and React components, used by Claude whenever you build UI in that style |
+
+## The Clawds
+
+crab-crew has eleven costumes: the five classics from savvy-progress, redrawn as pixel art, and six new ones.
+
+| ![Swimmer](docs/clawds/costumes/swimmer.svg) | ![Barista](docs/clawds/costumes/barista.svg) | ![Coffee roaster](docs/clawds/costumes/roaster.svg) |
+| --- | --- | --- |
+| Swimmer: laps with goggles up at each turn | Barista: pulls an espresso | Coffee roaster: a little drum roaster |
+| ![Gamer](docs/clawds/costumes/gamer.svg) | ![Guitarist](docs/clawds/costumes/guitarist.svg) | ![Miner](docs/clawds/costumes/miner.svg) |
+| Gamer: a fantasy MMO at the PC | Guitarist: electric guitar and pick | Miner: a minecart on rails |
+
+Every crab also gets its own colour, eyes, markings and name, so no two on screen look alike. All costumes, poses and what's new compared with savvy-progress are in the [crab-crew README](plugins/crab-crew); the style behind them is the [Crab Crew design system](plugins/crab-crew-design-system).
 
 ## Credits
 

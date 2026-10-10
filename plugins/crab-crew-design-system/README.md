@@ -2,6 +2,10 @@
 
 The pixel-art design system behind [crab-crew](../crab-crew), packaged as a Claude Code skill. Once installed, Claude uses it whenever you build UI in the Crab Crew style: Claude's crab Clawd and a crew of pixel crabs for agents, jobs, queues and progress, on sand surfaces with notched corners.
 
+![The Crab Crew](../../docs/clawds/crew.png)
+
+It is the style the [crab-crew](../crab-crew) mod is drawn in; crab-crew's costumes beyond the kit's original five (swimmer, barista, coffee roaster, gamer, guitarist, miner) are shown in the [crab-crew README](../crab-crew#six-new-clawds).
+
 ## Install
 
 ```
