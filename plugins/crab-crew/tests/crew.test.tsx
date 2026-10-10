@@ -1,6 +1,6 @@
 import { expect, mock, test } from 'claude-code/testing'
 
-import { ART_H, ART_W, compose, pickLook, rasterCells, svgSprite, TIERS } from '../hooks/art'
+import { ART_H, ART_W, compose, laneGrid, laneSchedule, pickLook, rasterCells, svgSprite, TIERS } from '../hooks/art'
 import { SPRITES } from '../hooks/sprites'
 import type { CrewLook } from '../types'
 
@@ -125,7 +125,7 @@ test('a crew of new crabs never repeats a name, a color or, while they last, a c
   for (let i = 0; i < 8; i++) looks.push(pickLook(SPRITES, `agent-${i * 7919}`, looks))
   expect(new Set(looks.map(l => l.name)).size).toBe(8)
   expect(new Set(looks.map(l => l.palette)).size).toBe(Math.min(8, SPRITES.kit.palettes.length))
-  expect(new Set(looks.slice(0, 5).map(l => l.tier)).size).toBe(TIERS.length)
+  expect(new Set(looks.map(l => l.tier)).size).toBe(Math.min(8, TIERS.length))
   // and the combination of color, eyes and markings differs for every crab
   expect(new Set(looks.map(l => `${l.palette}/${l.eye}/${l.texture}`)).size).toBe(8)
 })
@@ -148,4 +148,18 @@ test('every sprite sheet composes, fits the SVG limit, and encodes for the termi
       expect(r.rows).toBe(5)
     }
   }
+})
+
+test('the swimmer pushes its goggles up exactly at each turn of the lane', () => {
+  const sheet = SPRITES.tiers.swimmer
+  const look = { palette: 0, eye: 0, texture: 0, tier: 'swimmer' as const, name: 'Splash' }
+  const lane = laneSchedule(sheet, 56)
+  expect(lane.windows.length).toBe(2)
+  const glint = sheet.turn!.frames.some(f => f.some(r => r.includes('L')))
+  expect(glint).toBe(true)
+  const at = (tick: number) => laneGrid(SPRITES, sheet, look, { lane: 56, t: (tick + 0.5) * (1000 / lane.speed), offset: 0, moving: true, restyleEyes: true })
+  const hasLens = (g: (string | null)[][]) => g.some(r => r.includes(sheet.palette.L!))
+  const [[a, b]] = lane.windows as [[number, number]]
+  expect(hasLens(at(Math.floor((a + b) / 2)))).toBe(true) // at the far end: goggles up
+  expect(hasLens(at(2))).toBe(false) // mid-length: goggles on, no lens glint
 })

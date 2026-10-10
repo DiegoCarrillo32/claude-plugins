@@ -4,8 +4,12 @@ Diego Carrillo's Claude Code plugins: mods that change Claude Code's own interfa
 
 | Plugin | What it does |
 | --- | --- |
-| [crab-crew](plugins/crab-crew) | Mod: a progress bar above the prompt and a `/agents-info` panel where every subagent is its own animated pixel-art Clawd crab |
+| [crab-crew](plugins/crab-crew) | Mod: a progress bar above the prompt and a `/agents-info` panel where every subagent is its own animated pixel-art Clawd crab, in eleven costumes. An extension of [savvy-progress](https://github.com/JohnnyVizz/claude-kit/tree/main/plugins/savvy-progress) by JohnnyVizz |
 | [crab-crew-design-system](plugins/crab-crew-design-system) | Design system skill: the Crab Crew brand book, tokens, crab kit and React components, used by Claude whenever you build UI in that style |
+
+## Credits
+
+crab-crew is an extension of [savvy-progress](https://github.com/JohnnyVizz/claude-kit/tree/main/plugins/savvy-progress) from [JohnnyVizz/claude-kit](https://github.com/JohnnyVizz/claude-kit). I loved the idea of watching subagents as crabs and wanted more Clawds, so crab-crew builds on it with a crab of its own for every subagent, more costumes and a pixel-art desktop panel.
 
 ## Install
 

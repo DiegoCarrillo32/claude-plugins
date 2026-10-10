@@ -5,7 +5,13 @@
 
 import type { CrewLook, Tier } from '../types'
 
-export type Motion = 'walk' | 'run' | 'float' | 'still'
+export type Motion = 'walk' | 'run' | 'float' | 'swim' | 'still'
+
+/** What the lane under a crab is: the dashed ground, water to swim in, rails, or nothing. */
+export type Ground = 'dash' | 'water' | 'rails' | 'none'
+
+/** Frames played while a moving crab pauses at each end of its lane (the swimmer's goggles). */
+export type TurnFrames = { frameMs: number; body: { x: number; y: number }[]; frames: string[][] }
 
 export type Sheet = {
   motion: Motion
@@ -13,6 +19,8 @@ export type Sheet = {
   palette: Record<string, string>
   body: { x: number; y: number }[]
   frames: string[][]
+  ground?: Ground
+  turn?: TurnFrames
 }
 
 /** An eye style; `terminal: false` marks one the terminal's 2x4 cells cannot show, drawn classic there. */
@@ -51,7 +59,7 @@ export type Grid = (string | null)[][]
 
 // ------------------------------------------------------------------ identity
 
-export const TIERS: readonly Tier[] = ['astronaut', 'detective', 'engineer', 'chef', 'racer']
+export const TIERS: readonly Tier[] = ['astronaut', 'detective', 'engineer', 'chef', 'racer', 'swimmer', 'barista', 'roaster', 'gamer', 'guitarist', 'miner']
 
 export function hash(text: string): number {
   let h = 0x811c9dc5
@@ -226,7 +234,57 @@ export type SvgOptions = {
   still?: boolean
 }
 
-const SPEED: Record<Motion, number> = { walk: 9, run: 24, float: 3, still: 0 }
+const SPEED: Record<Motion, number> = { walk: 9, run: 24, float: 3, swim: 8, still: 0 }
+
+/**
+ * A moving crab's lane, one art pixel per tick: out to the far end, back again, and, for a sheet
+ * with turn frames, a pause at each end long enough to play them. The SVG and the terminal both
+ * read this, so the turn frames land exactly on the turns.
+ */
+export function laneSchedule(sheet: Sheet, lane: number) {
+  const travel = Math.max(0, lane - ART_W)
+  const speed = SPEED[sheet.motion]
+  const turn = sheet.turn
+  const pause = turn ? Math.max(1, Math.round(((turn.frames.length * turn.frameMs) / 1000) * speed)) : 0
+  const steps = [
+    ...Array.from({ length: travel + 1 }, (_, i) => i),
+    ...Array.from({ length: pause }, () => travel),
+    ...Array.from({ length: Math.max(0, travel - 1) }, (_, i) => travel - 1 - i),
+    ...Array.from({ length: pause }, () => 0),
+  ]
+  const windows: [number, number][] = pause > 0 ? [[travel + 1, travel + 1 + pause], [steps.length - pause, steps.length]] : []
+  return { travel, speed, steps, pause, windows, flipAt: travel + 1 + pause }
+}
+
+/** Which turn frame plays at a tick, or -1 when the crab is not turning. */
+function turnFrameAt(sheet: Sheet, schedule: ReturnType<typeof laneSchedule>, tick: number): number {
+  if (!sheet.turn) return -1
+  for (const [a, b] of schedule.windows) {
+    if (tick >= a && tick < b) return Math.min(sheet.turn.frames.length - 1, Math.floor(((tick - a) * sheet.turn.frames.length) / (b - a)))
+  }
+  return -1
+}
+
+const asTurnSheet = (sheet: Sheet): Sheet => ({ ...sheet, frames: sheet.turn!.frames, body: sheet.turn!.body, frameMs: sheet.turn!.frameMs })
+
+/** The lane's ground, drawn under the crab across the whole lane. */
+function groundSvg(kind: Ground, lane: number, phase: (s: number) => string): string {
+  const rect = (x: number, y: number, w: number, h: number) => `M${x} ${y}h${w}v${h}h-${w}z`
+  if (kind === 'none') return ''
+  if (kind === 'water') {
+    const wave = (shift: number) => Array.from({ length: Math.ceil(lane / 4) + 1 }, (_, i) => rect(i * 4 + shift, ART_H - 4, 2, 1)).join('')
+    return (
+      `<path fill="#2B8FD6" fill-opacity="0.45" d="${rect(0, ART_H - 3, lane, 3)}"/>` +
+      `<path fill="#9ED7F7" d="${wave(0)}"><animate attributeName="d" values="${wave(0)};${wave(2)}" dur="0.8s" begin="${phase(0.8)}" calcMode="discrete" repeatCount="indefinite"/></path>`
+    )
+  }
+  if (kind === 'rails') {
+    const rail = Array.from({ length: lane }, (_, x) => (x % 4 === 3 ? '' : rect(x, ART_H - 1, 1, 1))).join('')
+    const ties = Array.from({ length: Math.ceil(lane / 4) }, (_, i) => rect(i * 4 + 3, ART_H - 1, 1, 1)).join('')
+    return `<path fill="#9AA0A7" d="${rail}"/><path fill="#8A5A34" d="${ties}"/>`
+  }
+  return `<path fill="#8a8a8a" fill-opacity="0.35" d="${Array.from({ length: Math.ceil(lane / 3) }, (_, i) => rect(i * 3, ART_H - 1, 2, 1)).join('')}"/>`
+}
 
 export function svgSprite(data: SpriteData, sheet: Sheet, look: CrewLook, o: SvgOptions): string {
   const n = o.still ? 1 : sheet.frames.length
@@ -257,19 +315,37 @@ export function svgSprite(data: SpriteData, sheet: Sheet, look: CrewLook, o: Svg
   const speed = SPEED[sheet.motion]
   if (o.moving && !o.still && travel > 0 && speed > 0) {
     // Out to the far end one art pixel at a time, turn, and back: pixel-snapped, never blurred.
-    const steps = [...Array.from({ length: travel + 1 }, (_, i) => i), ...Array.from({ length: travel - 1 }, (_, i) => travel - 1 - i)]
-    const seconds = Math.round((steps.length / speed) * 1000) / 1000
+    const lane = laneSchedule(sheet, o.lane)
+    const len = lane.steps.length
+    const seconds = Math.round((len / speed) * 1000) / 1000
     const dur = seconds.toFixed(3)
     const moveBegin = phase(seconds)
+    if (sheet.turn && lane.pause > 0) {
+      // While it pauses at either end the walking frames step aside for the turn frames, on the
+      // lane's own clock, so they play exactly at the turns.
+      const k = (i: number) => (i / len).toFixed(4)
+      const [[a, b], [c]] = lane.windows as [[number, number], [number, number]]
+      const walking = `<g><animate attributeName="display" values="inline;none;inline;none" keyTimes="0;${k(a)};${k(b)};${k(c)}" dur="${dur}s" begin="${moveBegin}" calcMode="discrete" repeatCount="indefinite"/>${crab}</g>`
+      const turnSheet = asTurnSheet(sheet)
+      const turning = sheet.turn.frames
+        .map((_, j) => {
+          const g = compose(data, turnSheet, j, look, o.restyleEyes)
+          const values = lane.steps.map((__, tick) => (turnFrameAt(sheet, lane, tick) === j ? 'inline' : 'none')).join(';')
+          return `<g display="none"><animate attributeName="display" values="${values}" dur="${dur}s" begin="${moveBegin}" calcMode="discrete" repeatCount="indefinite"/>${pathTags(runs(g, () => true))}</g>`
+        })
+        .join('')
+      crab = walking + turning
+    }
     crab =
-      `<g><animateTransform attributeName="transform" type="translate" values="${steps.map(x => `${x} 0`).join(';')}" dur="${dur}s" begin="${moveBegin}" calcMode="discrete" repeatCount="indefinite"/>` +
-      `<g transform="translate(${ART_W / 2} 0)"><g><animateTransform attributeName="transform" type="scale" values="1 1;-1 1" keyTimes="0;${((travel + 1) / steps.length).toFixed(4)}" dur="${dur}s" begin="${moveBegin}" calcMode="discrete" repeatCount="indefinite"/>` +
+      `<g><animateTransform attributeName="transform" type="translate" values="${lane.steps.map(x => `${x} 0`).join(';')}" dur="${dur}s" begin="${moveBegin}" calcMode="discrete" repeatCount="indefinite"/>` +
+      `<g transform="translate(${ART_W / 2} 0)"><g><animateTransform attributeName="transform" type="scale" values="1 1;-1 1" keyTimes="0;${(lane.flipAt / len).toFixed(4)}" dur="${dur}s" begin="${moveBegin}" calcMode="discrete" repeatCount="indefinite"/>` +
       `<g transform="translate(${-ART_W / 2} 0)">${crab}</g></g></g></g>`
+  } else if (o.moving && travel > 0) {
+    // A crab that stays put (at a desk, a machine, a guitar) stands in the middle of its lane.
+    crab = `<g transform="translate(${Math.floor(travel / 2)} 0)">${crab}</g>`
   }
 
-  const ground = o.ground
-    ? `<path fill="#8a8a8a" fill-opacity="0.35" d="${Array.from({ length: Math.ceil(o.lane / 3) }, (_, i) => `M${i * 3} ${ART_H - 1}h2v1h-2z`).join('')}"/>`
-    : ''
+  const ground = o.ground ? groundSvg(sheet.ground ?? 'dash', o.lane, phase) : ''
   const left = o.left ?? 0
   const cols = o.cols ?? o.lane
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${cols * o.scale}" height="${rows * o.scale}" viewBox="${left} ${top} ${cols} ${rows}" shape-rendering="crispEdges">${TRANSPARENT}${ground}${crab}</svg>`
@@ -349,26 +425,31 @@ export function rasterCells(grid: Grid): { cells: string; columns: number; rows:
   return { cells: base64(new Uint8Array(words.buffer)), columns, rows }
 }
 
-/** Where a moving crab stands at time t (ms): art-pixel x, and whether it faces back. */
-export function lanePosition(motion: Motion, lane: number, t: number, offset: number): { x: number; flipped: boolean } {
-  const travel = Math.max(0, lane - ART_W)
-  const speed = SPEED[motion]
-  if (travel === 0 || speed === 0) return { x: 0, flipped: false }
-  const span = 2 * travel
-  const step = Math.floor(((t / 1000 + offset) * speed) % span)
-  return step <= travel ? { x: step, flipped: false } : { x: span - step, flipped: true }
-}
-
-/** One terminal frame of a crab in its lane. */
+/** One terminal frame of a crab in its lane, on the same lane schedule as the SVG. */
 export function laneGrid(data: SpriteData, sheet: Sheet, look: CrewLook, o: { lane: number; t: number; offset: number; moving: boolean; restyleEyes: boolean; ghost?: boolean }): Grid {
-  const index = Math.floor((o.t + o.offset * 1000) / sheet.frameMs) % sheet.frames.length
-  let crab = compose(data, sheet, index, look, o.restyleEyes, true)
+  const seconds = o.t / 1000 + o.offset
+  let x = 0
+  let flipped = false
+  let crab: Grid | null = null
+  const lane = laneSchedule(sheet, o.lane)
+  if (o.moving && lane.travel > 0 && lane.speed === 0) x = Math.floor(lane.travel / 2)
+  if (o.moving && lane.travel > 0 && lane.speed > 0) {
+    const tick = Math.floor((seconds * lane.speed) % lane.steps.length)
+    x = lane.steps[tick] ?? 0
+    flipped = tick >= lane.flipAt
+    const j = turnFrameAt(sheet, lane, tick)
+    if (j >= 0) crab = compose(data, asTurnSheet(sheet), j, look, o.restyleEyes, true)
+  }
+  if (!crab) {
+    const index = Math.floor((seconds * 1000) / sheet.frameMs) % sheet.frames.length
+    crab = compose(data, sheet, index, look, o.restyleEyes, true)
+  }
   if (o.ghost) crab = crab.map(row => row.map(c => (c ? ghost(c) : c)))
-  const { x, flipped } = o.moving ? lanePosition(sheet.motion, o.lane, o.t, o.offset) : { x: 0, flipped: false }
   if (flipped) crab = crab.map(row => [...row].reverse())
   const snapped = x - (x % 2) // whole cells, so the glyphs never tear
+  const drawn = crab
   return Array.from({ length: ART_H }, (_, y) =>
-    Array.from({ length: o.lane }, (_, lx) => crab[y]?.[lx - snapped] ?? null),
+    Array.from({ length: o.lane }, (_, lx) => drawn[y]?.[lx - snapped] ?? null),
   )
 }
 

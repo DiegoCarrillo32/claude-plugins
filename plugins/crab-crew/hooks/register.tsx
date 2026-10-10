@@ -44,6 +44,12 @@ const TIER_TITLE: Record<Tier, string> = {
   engineer: 'the engineer',
   chef: 'the chef',
   racer: 'the racer',
+  swimmer: 'the swimmer',
+  barista: 'the barista',
+  roaster: 'the coffee roaster',
+  gamer: 'the gamer',
+  guitarist: 'the guitarist',
+  miner: 'the miner',
 }
 
 // Claude's own crab, as the welcome banner draws it: the band and the header wear this look.

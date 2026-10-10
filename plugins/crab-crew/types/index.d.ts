@@ -1,7 +1,18 @@
 export type Effort = 'low' | 'medium' | 'high' | 'xhigh' | 'max'
 
 /** A crab's costume and the prop it animates. */
-export type Tier = 'astronaut' | 'detective' | 'engineer' | 'chef' | 'racer'
+export type Tier =
+  | 'astronaut'
+  | 'detective'
+  | 'engineer'
+  | 'chef'
+  | 'racer'
+  | 'swimmer'
+  | 'barista'
+  | 'roaster'
+  | 'gamer'
+  | 'guitarist'
+  | 'miner'
 
 /** What makes one crab itself: indices into the sprite kit, its costume and its name. */
 export type CrewLook = { palette: number; eye: number; texture: number; tier: Tier; name: string }
