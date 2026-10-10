@@ -13,11 +13,14 @@ Diego Carrillo's Claude Code plugins: mods that change Claude Code's own interfa
 
 crab-crew has eleven costumes: the five classics from savvy-progress, redrawn as pixel art, and six new ones.
 
-| <img src="docs/clawds/costumes/swimmer.svg" alt="Swimmer" width="224"> | <img src="docs/clawds/costumes/barista.svg" alt="Barista" width="224"> | <img src="docs/clawds/costumes/roaster.svg" alt="Coffee roaster" width="224"> |
-| --- | --- | --- |
-| Swimmer: laps with goggles up at each turn | Barista: pulls an espresso | Coffee roaster: a little drum roaster |
-| <img src="docs/clawds/costumes/gamer.svg" alt="Gamer" width="224"> | <img src="docs/clawds/costumes/guitarist.svg" alt="Guitarist" width="224"> | <img src="docs/clawds/costumes/miner.svg" alt="Miner" width="224"> |
-| Gamer: a fantasy MMO at the PC | Guitarist: electric guitar and pick | Miner: a minecart on rails |
+![The six new Clawds](docs/clawds/new-six.png)
+
+- **Swimmer**: swims laps and pushes its goggles up at each turn
+- **Barista**: pulls an espresso
+- **Coffee roaster**: tends a little drum roaster
+- **Gamer**: plays a fantasy MMO at the PC
+- **Guitarist**: electric guitar and pick
+- **Miner**: rides a minecart along the rails
 
 Every crab also gets its own colour, eyes, markings and name, so no two on screen look alike. All costumes, poses and what's new compared with savvy-progress are in the [crab-crew README](plugins/crab-crew); the style behind them is the [Crab Crew design system](plugins/crab-crew-design-system).
 

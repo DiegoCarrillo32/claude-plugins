@@ -18,13 +18,27 @@ Crab Crew is an extension of [savvy-progress](https://github.com/JohnnyVizz/clau
 
 The five tiers savvy-progress introduced, redrawn as pixel art on Clawd's exact banner proportions.
 
-| | Costume | Animation |
-| --- | --- | --- |
-| <img src="../../docs/clawds/costumes/astronaut.svg" alt="Astronaut" width="224"> | Astronaut | floats in a glass helmet, an air tank puffing |
-| <img src="../../docs/clawds/costumes/detective.svg" alt="Detective" width="224"> | Detective | sweeps a magnifying glass along the ground |
-| <img src="../../docs/clawds/costumes/engineer.svg" alt="Engineer" width="224"> | Engineer | turns a wrench in a hard hat |
-| <img src="../../docs/clawds/costumes/chef.svg" alt="Chef" width="224"> | Chef | tosses and flips an omelette |
-| <img src="../../docs/clawds/costumes/racer.svg" alt="Racer" width="224"> | Racer | runs with a fluttering checkered flag |
+![The five classic costumes](../../docs/clawds/original-five.png)
+
+<img src="../../docs/clawds/costumes/astronaut.svg" alt="Astronaut" width="224">
+
+**Astronaut**: floats in a glass helmet, an air tank puffing
+
+<img src="../../docs/clawds/costumes/detective.svg" alt="Detective" width="224">
+
+**Detective**: sweeps a magnifying glass along the ground
+
+<img src="../../docs/clawds/costumes/engineer.svg" alt="Engineer" width="224">
+
+**Engineer**: turns a wrench in a hard hat
+
+<img src="../../docs/clawds/costumes/chef.svg" alt="Chef" width="224">
+
+**Chef**: tosses and flips an omelette
+
+<img src="../../docs/clawds/costumes/racer.svg" alt="Racer" width="224">
+
+**Racer**: runs with a fluttering checkered flag
 
 ### Six new Clawds
 
@@ -32,20 +46,35 @@ New in Crab Crew.
 
 ![The six new Clawds](../../docs/clawds/new-six.png)
 
-| | Costume | Animation |
-| --- | --- | --- |
-| <img src="../../docs/clawds/costumes/swimmer.svg" alt="Swimmer" width="224"> | Swimmer | swims laps across the water and pushes its goggles up at every turn |
-| <img src="../../docs/clawds/costumes/barista.svg" alt="Barista" width="224"> | Barista | pulls an espresso: the shot runs, crema forms, steam curls up |
-| <img src="../../docs/clawds/costumes/roaster.svg" alt="Coffee roaster" width="224"> | Coffee roaster | tends a little drum roaster while beans drop into the tray and smoke rises |
-| <img src="../../docs/clawds/costumes/gamer.svg" alt="Gamer" width="224"> | Gamer | sits at the PC in a headset, playing a fantasy MMO on screen |
-| <img src="../../docs/clawds/costumes/guitarist.svg" alt="Guitarist" width="224"> | Guitarist | strums an electric guitar with a pick, notes floating off |
-| <img src="../../docs/clawds/costumes/miner.svg" alt="Miner" width="224"> | Miner | a blocky miner with a diamond pickaxe, riding a minecart along the rails |
+<img src="../../docs/clawds/costumes/swimmer.svg" alt="Swimmer" width="224">
+
+**Swimmer**: swims laps across the water and pushes its goggles up at every turn
+
+<img src="../../docs/clawds/costumes/barista.svg" alt="Barista" width="224">
+
+**Barista**: pulls an espresso: the shot runs, crema forms, steam curls up
+
+<img src="../../docs/clawds/costumes/roaster.svg" alt="Coffee roaster" width="224">
+
+**Coffee roaster**: tends a little drum roaster while beans drop into the tray and smoke rises
+
+<img src="../../docs/clawds/costumes/gamer.svg" alt="Gamer" width="224">
+
+**Gamer**: sits at the PC in a headset, playing a fantasy MMO on screen
+
+<img src="../../docs/clawds/costumes/guitarist.svg" alt="Guitarist" width="224">
+
+**Guitarist**: strums an electric guitar with a pick, notes floating off
+
+<img src="../../docs/clawds/costumes/miner.svg" alt="Miner" width="224">
+
+**Miner**: a blocky miner with a diamond pickaxe, riding a minecart along the rails
 
 ### Poses
 
-| <img src="../../docs/clawds/poses/walk.svg" alt="Walk" width="128"> | <img src="../../docs/clawds/poses/done.svg" alt="Done" width="128"> | <img src="../../docs/clawds/poses/failed.svg" alt="Stopped" width="128"> | <img src="../../docs/clawds/poses/sleep.svg" alt="Planned" width="128"> |
-| --- | --- | --- | --- |
-| working | done | stopped | planned, dozing |
+<img src="../../docs/clawds/poses/walk.svg" alt="Walk" width="128"> <img src="../../docs/clawds/poses/done.svg" alt="Done" width="128"> <img src="../../docs/clawds/poses/failed.svg" alt="Stopped" width="128"> <img src="../../docs/clawds/poses/sleep.svg" alt="Planned" width="128">
+
+Working, done, stopped, and planned (dozing until its turn).
 
 ### Every crab is its own
 
