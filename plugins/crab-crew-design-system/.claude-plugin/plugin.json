@@ -2,6 +2,10 @@
   "name": "crab-crew-design-system",
   "version": "0.1.0",
   "description": "The Crab Crew pixel-art design system as a skill: Clawd crabs, sand surfaces, notched corners, tokens and React components",
-  "author": { "name": "Diego Carrillo", "url": "https://github.com/DiegoCarrillo32" },
+  "license": "MIT",
+  "author": {
+    "name": "Diego Carrillo",
+    "url": "https://github.com/DiegoCarrillo32"
+  },
   "repository": "https://github.com/DiegoCarrillo32/claude-plugins"
 }

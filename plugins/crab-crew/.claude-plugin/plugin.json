@@ -2,6 +2,7 @@
   "name": "crab-crew",
   "version": "0.3.0",
   "description": "Flow progress band and a panel where every subagent is its own pixel-art Clawd crab",
+  "license": "MIT",
   "types": "./types/index.d.ts",
   "userConfig": {
     "costume": {

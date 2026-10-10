@@ -52,3 +52,7 @@ A plugin installed at user scope also loads in the Claude desktop app's Code tab
 ## Adding a plugin
 
 Put it in `plugins/<name>/` with its own `.claude-plugin/plugin.json`, then list it in `.claude-plugin/marketplace.json`. A plugin that lives in another repository can be listed with a GitHub source instead of a path.
+
+## License
+
+[MIT](LICENSE) © 2026 Diego Carrillo. Clawd belongs to Anthropic; see the notes in [LICENSE](LICENSE).
