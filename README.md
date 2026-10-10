@@ -55,4 +55,4 @@ Put it in `plugins/<name>/` with its own `.claude-plugin/plugin.json`, then list
 
 ## License
 
-[MIT](LICENSE) © 2026 Diego Carrillo. Clawd belongs to Anthropic; see the notes in [LICENSE](LICENSE).
+[MIT](LICENSE) © 2026 Diego Carrillo. Clawd belongs to Anthropic; see [NOTICE](NOTICE) for credits and trademarks.

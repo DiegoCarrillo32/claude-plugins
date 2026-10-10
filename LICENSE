@@ -19,16 +19,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
----
-
-Notes (not part of the license terms above)
-
-crab-crew is inspired by savvy-progress by JohnnyVizz
-(https://github.com/JohnnyVizz/claude-kit/tree/main/plugins/savvy-progress),
-which is also released under the MIT License.
-
-Clawd is Claude Code's mascot and belongs to Anthropic. The miner and gamer
-costumes are homages to Minecraft and World of Warcraft, whose names and
-characters belong to their owners. This license covers the code and pixel art in
-this repository, not those names, marks or characters.
