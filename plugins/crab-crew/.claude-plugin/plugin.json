@@ -1,0 +1,23 @@
+{
+  "name": "crab-crew",
+  "version": "0.2.0",
+  "description": "Flow progress band and a panel where every subagent is its own pixel-art Clawd crab",
+  "author": {
+    "name": "Diego Carrillo",
+    "url": "https://github.com/DiegoCarrillo32"
+  },
+  "repository": "https://github.com/DiegoCarrillo32/claude-plugins",
+  "types": "./types/index.d.ts",
+  "userConfig": {
+    "costume": {
+      "type": "string",
+      "title": "Crab costumes",
+      "description": "crew: every crab wears a different costume. effort: the costume follows the agent's effort (max astronaut, xhigh detective, high engineer, medium chef, low racer).",
+      "options": [
+        "crew",
+        "effort"
+      ],
+      "default": "crew"
+    }
+  }
+}

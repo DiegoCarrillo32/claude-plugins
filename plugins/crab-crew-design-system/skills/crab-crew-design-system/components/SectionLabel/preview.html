@@ -1,0 +1,13 @@
+<!-- @dsCard group="Text" height=64 -->
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>SectionLabel</title></head>
+<body>
+<div id="root" class="cc-stage"></div>
+<script>
+  var C = window.CrabCrew, h = React.createElement;
+  ReactDOM.createRoot(document.getElementById('root')).render(h('div', { className: 'cc-hstack', style: { gap: '32px' } },
+    h(C.SectionLabel, { count: 2 }, 'Running'), h(C.SectionLabel, { count: 1 }, 'Planned'), h(C.SectionLabel, { count: 3 }, 'Done')));
+</script>
+</body>
+</html>

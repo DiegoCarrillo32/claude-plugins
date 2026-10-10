@@ -1,0 +1,17 @@
+<!-- @dsCard group="Actions" height=72 -->
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>Button</title></head>
+<body>
+<div id="root" class="cc-stage"></div>
+<script>
+  var C = window.CrabCrew, h = React.createElement;
+  ReactDOM.createRoot(document.getElementById('root')).render(h('div', { className: 'cc-hstack' },
+    h(C.Button, { variant: 'primary', icon: h(C.PixelIcon, { name: 'play', size: 16 }) }, 'Start flow'),
+    h(C.Button, { variant: 'secondary', icon: h(C.CrabPile, { looks: [null, 'x', 'y'] }) }, 'Crew 3'),
+    h(C.Button, { variant: 'secondary', size: 'sm' }, 'Clear done'),
+    h(C.Button, { variant: 'quiet', size: 'sm' }, 'Reset'),
+    h(C.Button, { variant: 'primary', disabled: true }, 'Busy')));
+</script>
+</body>
+</html>

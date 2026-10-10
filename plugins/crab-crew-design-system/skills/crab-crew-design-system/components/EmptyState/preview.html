@@ -1,0 +1,13 @@
+<!-- @dsCard group="Crabs" height=140 -->
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>EmptyState</title></head>
+<body>
+<div id="root" class="cc-stage"></div>
+<script>
+  var C = window.CrabCrew, h = React.createElement;
+  ReactDOM.createRoot(document.getElementById('root')).render(h(C.EmptyState, { title: 'The beach is quiet', action: h(C.Button, { variant: 'secondary', size: 'sm' }, 'Start a flow') },
+    'Each subagent shows up here as a crab of its own.'));
+</script>
+</body>
+</html>

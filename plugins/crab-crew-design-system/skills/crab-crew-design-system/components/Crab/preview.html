@@ -1,0 +1,21 @@
+<!-- @dsCard group="Crabs" height=170 -->
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>Crab</title></head>
+<body>
+<div id="root" class="cc-stage"></div>
+<script>
+  var C = window.CrabCrew, h = React.createElement;
+  ReactDOM.createRoot(document.getElementById('root')).render(h(React.Fragment, null,
+    h('div', { className: 'cc-hstack' },
+      h(C.Crab, { pose: 'walk', crop: 'portrait', scale: 3, alt: 'Clawd walking' }),
+      h(C.Crab, { pose: 'done', crop: 'portrait', scale: 3, alt: 'Clawd, done' }),
+      h(C.Crab, { pose: 'failed', crop: 'portrait', scale: 3, alt: 'Clawd, stopped' }),
+      h(C.Crab, { pose: 'sleep', crop: 'portrait', scale: 3, alt: 'Clawd, asleep' })),
+    h('div', { className: 'cc-hstack' },
+      ['astronaut', 'detective', 'engineer', 'chef', 'racer'].map(function (t, i) {
+        return h(C.Crab, { key: t, look: { palette: [0, 7, 1, 11, 5][i], eye: i, texture: i + 1, tier: t, name: t }, pose: 'costume', scale: 2, offset: i, alt: 'A crab dressed as the ' + t });
+      }))));
+</script>
+</body>
+</html>

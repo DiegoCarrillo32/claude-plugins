@@ -1,0 +1,14 @@
+<!-- @dsCard group="Crabs" height=220 -->
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>SpeechBubble</title></head>
+<body>
+<div id="root" class="cc-stage"></div>
+<script>
+  var C = window.CrabCrew, h = React.createElement;
+  ReactDOM.createRoot(document.getElementById('root')).render(h(React.Fragment, null,
+    h(C.SpeechBubble, { pose: 'walk' }, 'Found 3 call sites that still pass the old token. Patching them now.'),
+    h(C.SpeechBubble, { look: { palette: 'Sky', eye: 'happy', tier: 'chef', name: 'Nori' }, pose: 'done' }, 'Tests pass. 42 of 42.')));
+</script>
+</body>
+</html>

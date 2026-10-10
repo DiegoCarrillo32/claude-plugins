@@ -1,0 +1,16 @@
+<!-- @dsCard group="Containers" height=72 -->
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>Tabs</title></head>
+<body>
+<div id="root" class="cc-stage"></div>
+<script>
+  var C = window.CrabCrew, h = React.createElement;
+  function Demo() {
+    var s = React.useState('running');
+    return h(C.Tabs, { label: 'Crew', value: s[0], onChange: s[1], items: [{ id: 'running', label: 'Running', count: 2 }, { id: 'planned', label: 'Planned', count: 1 }, { id: 'done', label: 'Done', count: 3 }] });
+  }
+  ReactDOM.createRoot(document.getElementById('root')).render(h(Demo));
+</script>
+</body>
+</html>

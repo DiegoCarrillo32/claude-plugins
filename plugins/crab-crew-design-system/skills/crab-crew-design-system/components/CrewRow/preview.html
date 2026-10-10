@@ -1,0 +1,15 @@
+<!-- @dsCard group="Crew" height=150 -->
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>CrewRow</title></head>
+<body>
+<div id="root" class="cc-stage"></div>
+<script>
+  var C = window.CrabCrew, h = React.createElement;
+  ReactDOM.createRoot(document.getElementById('root')).render(h(React.Fragment, null,
+    h(C.CrewRow, { status: 'planned', look: { palette: 'Sky', name: 'Pebble' }, description: 'Write the migration notes', facts: ['Haiku 5.5', 'low effort', 'est ~$0.020', '~1m 10s'] }),
+    h(C.CrewRow, { status: 'done', look: { palette: 'Amber', eye: 'happy', name: 'Kelp' }, description: 'Update the fixtures', facts: ['Sonnet 5.5', '4/4 tasks', 'ctx 22.8k', '~$0.044', '1m 32s'] }),
+    h(C.CrewRow, { status: 'failed', look: { palette: 'Slate', eye: 'beady', name: 'Flint' }, description: 'Run the e2e suite', facts: ['Sonnet 5.5', 'ctx 9.1k', '~$0.012', '18s'] })));
+</script>
+</body>
+</html>

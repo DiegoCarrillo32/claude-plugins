@@ -1,0 +1,14 @@
+<!-- @dsCard group="Crabs" height=64 -->
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>CrabPile</title></head>
+<body>
+<div id="root" class="cc-stage"></div>
+<script>
+  var C = window.CrabCrew, h = React.createElement;
+  ReactDOM.createRoot(document.getElementById('root')).render(h('div', { className: 'cc-hstack' },
+    h(C.CrabPile, { looks: [null, 'scout-1', 'scout-2'], scale: 2 }),
+    h(C.CrabPile, { looks: ['a', 'b', 'c', 'd', 'e', 'f'], scale: 1 })));
+</script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+{
+  "name": "diego-plugins",
+  "description": "Claude Code mods and design systems by Diego Carrillo",
+  "owner": {
+    "name": "Diego Carrillo",
+    "url": "https://github.com/DiegoCarrillo32"
+  },
+  "plugins": [
+    {
+      "name": "crab-crew",
+      "source": "./plugins/crab-crew",
+      "description": "A progress bar above the prompt and a panel where every subagent is its own pixel-art Clawd crab"
+    },
+    {
+      "name": "crab-crew-design-system",
+      "source": "./plugins/crab-crew-design-system",
+      "description": "The Crab Crew pixel-art design system as a skill: Clawd crabs, tokens and React components"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+<!-- @dsCard group="Forms" height=72 -->
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>Checkbox</title></head>
+<body>
+<div id="root" class="cc-stage"></div>
+<script>
+  var C = window.CrabCrew, h = React.createElement;
+  ReactDOM.createRoot(document.getElementById('root')).render(h('div', { className: 'cc-hstack', style: { gap: '24px' } },
+    h(C.Checkbox, { label: 'Costumes follow effort', defaultChecked: true }),
+    h(C.Checkbox, { label: 'Show finished crabs' }),
+    h(C.Checkbox, { label: 'Ghost planned crabs', disabled: true })));
+</script>
+</body>
+</html>

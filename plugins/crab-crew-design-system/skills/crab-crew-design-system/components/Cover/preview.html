@@ -1,0 +1,110 @@
+<!-- @dsCard height=288 -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Crab Crew</title>
+<style>
+  html, body { margin:0; height:100%; }
+  body { background:var(--sand); color:var(--ink); font-family:var(--font-mono); overflow:hidden; }
+  .cover { position:relative; height:288px; overflow:hidden; }
+  .art { position:absolute; top:0; left:480px; width:480px; height:288px; overflow:hidden; }
+  .art svg { display:block; width:480px; height:288px; shape-rendering:crispEdges; }
+  .sea { fill:var(--crab-slate-shade); }
+  .clawd { fill:var(--clawd); }
+  .jade { fill:var(--crab-jade); }
+  .sky { fill:var(--crab-sky); }
+  .eye { fill:var(--crab-eye); }
+  .ground { fill:var(--ground); }
+  .words { position:absolute; left:var(--space-6); right:var(--space-6); bottom:var(--space-6); max-width:440px; }
+  .name { margin:0; font-family:var(--font-pixel); font-size:104px; line-height:.95; font-weight:700; color:var(--ink); }
+  .tag { margin:var(--space-2) 0 0 4px; font-size:14px; line-height:20px; color:var(--ink-muted); }
+</style>
+</head>
+<body>
+<div class="cover">
+<div class="art" aria-hidden="true">
+<svg viewBox="0 0 480 288" width="480" height="288">
+<!--
+  blocks      crab-slate-shade "sea" 432x192 bled off the top and right · clawd: Clawd's walk frame at 12px an art pixel (192x120), the figure · crab-jade at 6px and crab-sky at 4px, the crew · crab-eye for every eye
+  arrangement one big crab standing on the ground line in front of a slab, two smaller crew members walking in from the left, all feet on one line
+  pattern     the ground line, from "the dashed ground line under a walking crab (2 on, 1 off)": 8px dashes at a 12px pitch, ground token
+  scales      art pixel = pixel x 6 / x 3 / x 2; the sea's corner steps in space-4; ground dash height space-1; radius-0 everywhere (notched, never rounded)
+-->
+<path class="sea" d="M64 -8H496V184H96V168H80V152H64Z"/>
+<path class="ground" d="M0 268h8v4h-8zM12 268h8v4h-8zM24 268h8v4h-8zM36 268h8v4h-8zM48 268h8v4h-8zM60 268h8v4h-8zM72 268h8v4h-8zM84 268h8v4h-8zM96 268h8v4h-8zM108 268h8v4h-8zM120 268h8v4h-8zM132 268h8v4h-8zM144 268h8v4h-8zM156 268h8v4h-8zM168 268h8v4h-8zM180 268h8v4h-8zM192 268h8v4h-8zM204 268h8v4h-8zM216 268h8v4h-8zM228 268h8v4h-8zM240 268h8v4h-8zM252 268h8v4h-8zM264 268h8v4h-8zM276 268h8v4h-8zM288 268h8v4h-8zM300 268h8v4h-8zM312 268h8v4h-8zM324 268h8v4h-8zM336 268h8v4h-8zM348 268h8v4h-8zM360 268h8v4h-8zM372 268h8v4h-8zM384 268h8v4h-8zM396 268h8v4h-8zM408 268h8v4h-8zM420 268h8v4h-8zM432 268h8v4h-8zM444 268h8v4h-8zM456 268h8v4h-8zM468 268h8v4h-8z"/>
+<rect class="clawd" x="256" y="148" width="144" height="12"/>
+<rect class="clawd" x="256" y="160" width="144" height="12"/>
+<rect class="clawd" x="256" y="172" width="24" height="12"/>
+<rect class="eye" x="280" y="172" width="12" height="12"/>
+<rect class="clawd" x="292" y="172" width="72" height="12"/>
+<rect class="eye" x="364" y="172" width="12" height="12"/>
+<rect class="clawd" x="376" y="172" width="24" height="12"/>
+<rect class="clawd" x="232" y="184" width="48" height="12"/>
+<rect class="eye" x="280" y="184" width="12" height="12"/>
+<rect class="clawd" x="292" y="184" width="72" height="12"/>
+<rect class="eye" x="364" y="184" width="12" height="12"/>
+<rect class="clawd" x="376" y="184" width="24" height="12"/>
+<rect class="clawd" x="232" y="196" width="192" height="12"/>
+<rect class="clawd" x="256" y="208" width="168" height="12"/>
+<rect class="clawd" x="256" y="220" width="144" height="12"/>
+<rect class="clawd" x="256" y="232" width="144" height="12"/>
+<rect class="clawd" x="268" y="244" width="12" height="12"/>
+<rect class="clawd" x="292" y="244" width="12" height="12"/>
+<rect class="clawd" x="352" y="244" width="12" height="12"/>
+<rect class="clawd" x="376" y="244" width="12" height="12"/>
+<rect class="clawd" x="292" y="256" width="12" height="12"/>
+<rect class="clawd" x="376" y="256" width="12" height="12"/>
+<rect class="jade" x="116" y="208" width="72" height="6"/>
+<rect class="jade" x="116" y="214" width="72" height="6"/>
+<rect class="jade" x="116" y="220" width="12" height="6"/>
+<rect class="eye" x="128" y="220" width="6" height="6"/>
+<rect class="jade" x="134" y="220" width="36" height="6"/>
+<rect class="eye" x="170" y="220" width="6" height="6"/>
+<rect class="jade" x="176" y="220" width="12" height="6"/>
+<rect class="jade" x="104" y="226" width="24" height="6"/>
+<rect class="eye" x="128" y="226" width="6" height="6"/>
+<rect class="jade" x="134" y="226" width="36" height="6"/>
+<rect class="eye" x="170" y="226" width="6" height="6"/>
+<rect class="jade" x="176" y="226" width="12" height="6"/>
+<rect class="jade" x="104" y="232" width="96" height="6"/>
+<rect class="jade" x="116" y="238" width="84" height="6"/>
+<rect class="jade" x="116" y="244" width="72" height="6"/>
+<rect class="jade" x="116" y="250" width="72" height="6"/>
+<rect class="jade" x="122" y="256" width="6" height="6"/>
+<rect class="jade" x="134" y="256" width="6" height="6"/>
+<rect class="jade" x="164" y="256" width="6" height="6"/>
+<rect class="jade" x="176" y="256" width="6" height="6"/>
+<rect class="jade" x="134" y="262" width="6" height="6"/>
+<rect class="jade" x="176" y="262" width="6" height="6"/>
+<rect class="sky" x="32" y="228" width="48" height="4"/>
+<rect class="sky" x="32" y="232" width="48" height="4"/>
+<rect class="sky" x="32" y="236" width="8" height="4"/>
+<rect class="eye" x="40" y="236" width="4" height="4"/>
+<rect class="sky" x="44" y="236" width="24" height="4"/>
+<rect class="eye" x="68" y="236" width="4" height="4"/>
+<rect class="sky" x="72" y="236" width="8" height="4"/>
+<rect class="sky" x="24" y="240" width="16" height="4"/>
+<rect class="eye" x="40" y="240" width="4" height="4"/>
+<rect class="sky" x="44" y="240" width="24" height="4"/>
+<rect class="eye" x="68" y="240" width="4" height="4"/>
+<rect class="sky" x="72" y="240" width="8" height="4"/>
+<rect class="sky" x="24" y="244" width="64" height="4"/>
+<rect class="sky" x="32" y="248" width="56" height="4"/>
+<rect class="sky" x="32" y="252" width="48" height="4"/>
+<rect class="sky" x="32" y="256" width="48" height="4"/>
+<rect class="sky" x="36" y="260" width="4" height="4"/>
+<rect class="sky" x="44" y="260" width="4" height="4"/>
+<rect class="sky" x="64" y="260" width="4" height="4"/>
+<rect class="sky" x="72" y="260" width="4" height="4"/>
+<rect class="sky" x="44" y="264" width="4" height="4"/>
+<rect class="sky" x="72" y="264" width="4" height="4"/>
+</svg>
+</div>
+<div class="words">
+<h1 class="name">Crab Crew</h1>
+<p class="tag">Pixel crabs and the interface they walk on.</p>
+</div>
+</div>
+</body>
+</html>

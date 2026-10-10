@@ -1,0 +1,18 @@
+<!-- @dsCard group="Crew" height=200 -->
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>CrewCard</title></head>
+<body>
+<div id="root" class="cc-stage"></div>
+<script>
+  var C = window.CrabCrew, h = React.createElement;
+  ReactDOM.createRoot(document.getElementById('root')).render(h(React.Fragment, null,
+    h(C.CrewCard, { look: { palette: 'Jade', eye: 'determined', texture: 'stripes', tier: 'engineer', name: 'Barnacle' }, role: 'the engineer · general-purpose', elapsed: '2m 14s',
+      description: 'Migrate callers to the new session API', activity: 'Editing store.ts',
+      facts: ['Opus 5.5 · high', '3/7 tasks', 'ctx 84.2k/1M', '~$0.412', '~2m 58s left'] }),
+    h(C.CrewCard, { look: { palette: 'Plum', eye: 'sparkly', texture: 'spots', tier: 'detective', name: 'Quill' }, elapsed: '48s',
+      description: 'Find every reader of the legacy token', activity: 'Searching for getToken(',
+      facts: ['Sonnet 5.5 · medium', '14 calls', 'ctx 31.0k/1M', '~$0.061'] })));
+</script>
+</body>
+</html>

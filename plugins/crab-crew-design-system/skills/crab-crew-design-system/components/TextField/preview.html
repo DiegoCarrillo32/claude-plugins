@@ -1,0 +1,14 @@
+<!-- @dsCard group="Forms" height=140 -->
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>TextField</title></head>
+<body>
+<div id="root" class="cc-stage"></div>
+<script>
+  var C = window.CrabCrew, h = React.createElement;
+  ReactDOM.createRoot(document.getElementById('root')).render(h('div', { style: { display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '16px' } },
+    h(C.TextField, { label: 'Flow title', placeholder: 'Refactor the session store', hint: 'Shown on the band above the prompt.' }),
+    h(C.TextField, { label: 'Planned tasks', defaultValue: 'eight', error: 'Enter a whole number, like 8.' })));
+</script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+<!-- @dsCard group="Icons" height=96 -->
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>PixelIcon</title></head>
+<body>
+<div id="root" class="cc-stage"></div>
+<script>
+  var C = window.CrabCrew, h = React.createElement;
+  ReactDOM.createRoot(document.getElementById('root')).render(h('div', { className: 'cc-hstack', style: { gap: '16px' } },
+    C.icons.map(function (n) { return h('span', { key: n, title: n, style: { display: 'inline-flex', color: n === 'heart' || n === 'shell' ? 'var(--clawd-text)' : 'var(--ink)' } }, h(C.PixelIcon, { name: n, label: n })); })));
+</script>
+</body>
+</html>

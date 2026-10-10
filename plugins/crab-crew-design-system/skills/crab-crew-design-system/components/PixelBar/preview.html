@@ -1,0 +1,16 @@
+<!-- @dsCard group="Progress" height=120 -->
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>PixelBar</title></head>
+<body>
+<div id="root" class="cc-stage"></div>
+<script>
+  var C = window.CrabCrew, h = React.createElement;
+  ReactDOM.createRoot(document.getElementById('root')).render(h(React.Fragment, null,
+    h(C.PixelBar, { done: 3, total: 8, active: 2, working: true, label: '3 of 8 tasks done, 2 under way' }),
+    h(C.PixelBar, { done: 5, total: 5 }),
+    h(C.PixelBar, { done: 2, total: 12, color: 'Jade' }),
+    h(C.PixelBar, { done: 7, total: 10, color: 'Periwinkle', height: 10 })));
+</script>
+</body>
+</html>
